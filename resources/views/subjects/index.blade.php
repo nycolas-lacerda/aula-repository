@@ -25,7 +25,7 @@
         </thead>
 
         <tbody>
-            @foreach ($subjects as $subject)
+            @forelse ($subjects as $subject)
                 <tr>
 
                     <td>
@@ -54,7 +54,13 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3">
+                        Nenhuma disciplina cadastrada.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
     {{ $subjects->links() }}
