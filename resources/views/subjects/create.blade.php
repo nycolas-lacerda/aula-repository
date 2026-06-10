@@ -1,38 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+    <h1>Nova Disciplina</h1>
 
-<h1>Nova Disciplina</h1>
+    <form action="{{ route('subjects.store') }}" method="POST">
 
-<form
-    action="{{ route('subjects.store') }}"
-    method="POST">
+        @csrf
 
-    @csrf
+        <x-form.input name="name" label="Nome" />
 
-    <x-form.input
-        name="name"
-        label="Nome"/>
+        <div class="mb-3">
 
-    <div class="mb-3">
+            <label class="form-label">
+                Descrição
+            </label>
 
-        <label class="form-label">
-            Descrição
-        </label>
+            <textarea name="description" class="form-control"></textarea>
 
-        <textarea
-            name="description"
-            class="form-control"></textarea>
+        </div>
 
-    </div>
+        <button class="btn btn-success">
 
-    <button
-        class="btn btn-success">
+            Salvar
 
-        Salvar
+        </button>
 
-    </button>
-
-</form>
-
+    </form>
 @endsection

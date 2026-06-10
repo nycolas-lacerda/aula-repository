@@ -1,67 +1,59 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="d-flex justify-content-between mb-3">
 
-<div class="d-flex justify-content-between mb-3">
+        <h1>Disciplinas</h1>
 
-    <h1>Disciplinas</h1>
+        <a href="{{ route('subjects.create') }}" class="btn btn-primary">
 
-    <a
-        href="{{ route('subjects.create') }}"
-        class="btn btn-primary">
+            Nova Disciplina
 
-        Nova Disciplina
+        </a>
 
-    </a>
+    </div>
 
-</div>
+    <table class="table table-bordered">
 
-<table class="table table-bordered">
+        <thead>
 
-    <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
 
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Ações</th>
-        </tr>
+        </thead>
 
-    </thead>
+        <tbody>
 
-    <tbody>
+            @foreach ($subjects as $subject)
+                <tr>
 
-    @foreach($subjects as $subject)
+                    <td>
+                        {{ $subject->id }}
+                    </td>
 
-        <tr>
+                    <td>
+                        {{ $subject->name }}
+                    </td>
 
-            <td>
-                {{ $subject->id }}
-            </td>
+                    <td>
 
-            <td>
-                {{ $subject->name }}
-            </td>
+                        <a href="{{ route('subjects.edit', $subject) }}" class="btn btn-warning btn-sm">
 
-            <td>
+                            Editar
 
-                <a
-                    href="{{ route('subjects.edit',$subject) }}"
-                    class="btn btn-warning btn-sm">
+                        </a>
 
-                    Editar
+                    </td>
 
-                </a>
+                </tr>
+            @endforeach
 
-            </td>
+        </tbody>
 
-        </tr>
+    </table>
 
-    @endforeach
-
-    </tbody>
-
-</table>
-
-{{ $subjects->links() }}
-
+    {{ $subjects->links() }}
 @endsection
