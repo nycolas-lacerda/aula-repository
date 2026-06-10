@@ -16,17 +16,15 @@
     <table class="table table-bordered">
 
         <thead>
-
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Descrição</th>
                 <th>Ações</th>
             </tr>
-
         </thead>
 
         <tbody>
-
             @foreach ($subjects as $subject)
                 <tr>
 
@@ -39,21 +37,25 @@
                     </td>
 
                     <td>
-
-                        <a href="{{ route('subjects.edit', $subject) }}" class="btn btn-warning btn-sm">
-
-                            Editar
-
-                        </a>
-
+                        {{ $subject->description }}
                     </td>
 
+                    <td>
+                        <a href="{{ route('subjects.edit', $subject) }}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                        <form action="{{ route('subjects.destroy', $subject) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Deseja remover esta disciplina?')"
+                                class="btn btn-danger btn-sm">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
-
         </tbody>
-
     </table>
-
     {{ $subjects->links() }}
 @endsection

@@ -48,6 +48,12 @@ class SubjectController extends Controller
         );
     }
 
+    public function show(Subject $subject)
+    {
+        return redirect()
+            ->route('subjects.edit', $subject);
+    }
+
     public function update(
         UpdateSubjectRequest $request,
         Subject $subject

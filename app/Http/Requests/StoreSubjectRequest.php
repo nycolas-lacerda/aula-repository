@@ -28,8 +28,4 @@ class StoreSubjectRequest extends FormRequest
             ]
         ];
     }
-
-    // public function messages(){
-
-    // }
 }
