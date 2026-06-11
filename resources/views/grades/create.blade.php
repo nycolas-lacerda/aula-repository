@@ -1,16 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Nova Série</h1>
-    <form action="{{ route('grades.store') }}" method="POST">
-        @csrf
-        <x-form.input name="name" label="Nome da Série" />
-        <button type="submit" class="btn btn-success">
-            Salvar
-        </button>
+    <div class="mb-4">
+        <p class="text-uppercase text-muted small fw-semibold mb-1">Cadastro base</p>
+        <h1 class="h3 mb-0">Nova série</h1>
+    </div>
 
-        <a href="{{ route('grades.index') }}" class="btn btn-secondary">
-            Cancelar
-        </a>
-    </form>
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form action="{{ route('grades.store') }}" method="POST" class="row g-3">
+                @csrf
+                <div class="col-12">
+                    <x-form.input name="name" label="Nome da série" />
+                </div>
+                <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <a href="{{ route('grades.index') }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

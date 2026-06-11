@@ -7,9 +7,6 @@ use Illuminate\Validation\Rule;
 
 class UpdateGradeRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -21,15 +18,15 @@ class UpdateGradeRequest extends FormRequest
             'name' => [
                 'required',
                 'max:255',
-                Rule::unique('grades')->ignore($this->grade)
-            ]
+                Rule::unique('grades')->ignore($this->grade),
+            ],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'name' => 'nome da série'
+            'name' => 'nome da série',
         ];
     }
 }

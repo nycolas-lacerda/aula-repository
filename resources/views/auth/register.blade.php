@@ -1,52 +1,56 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <div class="mb-4">
+        <p class="text-uppercase text-muted small fw-semibold mb-1">Criar conta</p>
+        <h2 class="h3 mb-2">Registrar novo usuário</h2>
+        <p class="text-muted mb-0">Escolha o perfil adequado para liberar as permissões corretas dentro do sistema.</p>
+    </div>
+
+    <form method="POST" action="{{ route('register') }}" class="row g-3">
         @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+        <div class="col-12">
+            <x-input-label for="name" value="Nome" />
+            <x-text-input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+        <div class="col-12">
+            <x-input-label for="email" value="E-mail" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="col-12">
+            <x-input-label for="role" value="Perfil" />
+            <select id="role" name="role" class="form-select" required>
+                <option value="">Selecione</option>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->name }}" @selected(old('role', 'teacher') === $role->name)>
+                        {{ \App\Models\User::roleDisplayName($role->name) }}
+                    </option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
+        <div class="col-12">
+            <x-input-label for="password" value="Senha" />
+            <x-text-input id="password" type="password" name="password" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
+        <div class="col-12">
+            <x-input-label for="password_confirmation" value="Confirmar senha" />
+            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+            <a class="link-primary text-decoration-none" href="{{ route('login') }}">
+                Já tem cadastro?
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <x-primary-button>Registrar</x-primary-button>
         </div>
     </form>
 </x-guest-layout>

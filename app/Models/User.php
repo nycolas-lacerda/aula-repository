@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -45,5 +46,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class, 'created_by');
+    }
+
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(Lesson::class, 'teacher_id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'reviewer_id');
+    }
+
+    public static function roleDisplayName(string $role): string
+    {
+        return match ($role) {
+            'admin' => 'Administrador',
+            'coordinator' => 'Coordenador',
+            'teacher' => 'Professor',
+            default => ucfirst($role),
+        };
     }
 }

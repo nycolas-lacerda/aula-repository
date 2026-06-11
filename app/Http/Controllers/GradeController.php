@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
 use App\Http\Requests\StoreGradeRequest;
 use App\Http\Requests\UpdateGradeRequest;
+use App\Models\Grade;
 
 class GradeController extends Controller
 {
@@ -22,46 +22,30 @@ class GradeController extends Controller
 
     public function store(StoreGradeRequest $request)
     {
-        Grade::create(
-            $request->validated()
-        );
+        Grade::create($request->validated());
 
         return redirect()
             ->route('grades.index')
-            ->with(
-                'success',
-                'Série cadastrada com sucesso.'
-            );
+            ->with('success', 'Série cadastrada com sucesso.');
     }
 
     public function edit(Grade $grade)
     {
-        return view(
-            'grades.edit',
-            compact('grade')
-        );
+        return view('grades.edit', compact('grade'));
     }
 
     public function show(Grade $grade)
     {
-        return redirect()
-            ->route('grades.edit', $grade);
+        return redirect()->route('grades.edit', $grade);
     }
 
-    public function update(
-        UpdateGradeRequest $request,
-        Grade $grade
-    ) {
-        $grade->update(
-            $request->validated()
-        );
+    public function update(UpdateGradeRequest $request, Grade $grade)
+    {
+        $grade->update($request->validated());
 
         return redirect()
             ->route('grades.index')
-            ->with(
-                'success',
-                'Série atualizada com sucesso.'
-            );
+            ->with('success', 'Série atualizada com sucesso.');
     }
 
     public function destroy(Grade $grade)
@@ -70,9 +54,6 @@ class GradeController extends Controller
 
         return redirect()
             ->route('grades.index')
-            ->with(
-                'success',
-                'Série removida com sucesso.'
-            );
+            ->with('success', 'Série removida com sucesso.');
     }
 }
