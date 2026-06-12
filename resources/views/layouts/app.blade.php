@@ -21,27 +21,6 @@
             <a class="navbar-brand fw-semibold" href="{{ route('dashboard') }}">
                 {{ config('app.name', 'Aula') }}
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"
-                aria-controls="topNavbar" aria-expanded="false" aria-label="Alternar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="topNavbar">
-                <div class="ms-auto d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-3 mt-lg-0">
-                    @auth
-                        <div class="text-white small text-lg-end">
-                            <div class="fw-semibold">{{ $user->name }}</div>
-                            <div class="opacity-75">
-                                {{ \App\Models\User::roleDisplayName($user->getRoleNames()->first() ?? '') }}</div>
-                        </div>
-                        <form method="POST" action="{{ route('logout') }}" class="m-0">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-light btn-sm">Sair</button>
-                        </form>
-                    @endauth
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -50,13 +29,49 @@
             @auth
                 <aside class="col-lg-2 col-xl-2 border-end bg-white">
                     <div class="p-3">
-                        <div class="card border-0 shadow-sm mb-3">
-                            <div class="card-body">
-                                <div class="small text-uppercase text-muted fw-semibold mb-2">Painel</div>
-                                <div class="fw-semibold">{{ $user->name }}</div>
-                                <div class="text-muted small">
-                                    {{ \App\Models\User::roleDisplayName($user->getRoleNames()->first() ?? '') }}</div>
+                        <div class="dropdown mb-3">
+                            <div class="d-flex align-items-center gap-3 dropdown-toggle" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
+
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                                    style="width: 48px; height: 48px;">
+                                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                                </div>
+
+                                <div>
+                                    <div class="fw-semibold">{{ $user->name }}</div>
+                                    <div class="text-muted small">
+                                        {{ \App\Models\User::roleDisplayName($user->getRoleNames()->first() ?? '') }}
+                                    </div>
+                                </div>
                             </div>
+
+                            <ul class="dropdown-menu shadow">
+                                <li>
+                                    <span class="dropdown-item-text">
+                                        <strong>{{ $user->name }}</strong>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="dropdown-item-text text-muted">
+                                        {{ $user->email }}
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Sair
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
 
                         <div class="list-group list-group-flush rounded-3 shadow-sm">
