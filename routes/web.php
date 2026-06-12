@@ -61,8 +61,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ]);
     })->name('dashboard');
 
-    Route::resource('subjects', SubjectController::class)->middleware(['role:admin']);
-    Route::resource('grades', GradeController::class)->middleware(['role:admin']);
+    Route::resource('subjects', SubjectController::class)->middleware(['role:admin|coordinator']);
+    Route::resource('grades', GradeController::class)->middleware(['role:admin|coordinator']);
     Route::resource('activities', ActivityController::class)->middleware(['role:admin|coordinator|teacher']);
     Route::get('activity-files/{activityFile}', [ActivityController::class, 'showFile'])
         ->name('activity-files.show')
