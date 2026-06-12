@@ -80,7 +80,7 @@
                                 Painel
                             </a>
 
-                            @if ($user->hasRole('admin'))
+                            @if ($user->hasRole('admin', 'coordinator'))
                                 <a href="{{ route('subjects.index') }}"
                                     class="list-group-item list-group-item-action {{ request()->routeIs('subjects.*') ? 'active' : '' }}">
                                     Disciplinas
@@ -91,7 +91,7 @@
                                 </a>
                             @endif
 
-                            @if ($user->hasAnyRole(['admin', 'teacher']))
+                            @if ($user->hasAnyRole(['admin', 'coordinator', 'teacher']))
                                 <a href="{{ route('activities.index') }}"
                                     class="list-group-item list-group-item-action {{ request()->routeIs('activities.*') ? 'active' : '' }}">
                                     Atividades
