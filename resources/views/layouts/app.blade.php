@@ -80,7 +80,7 @@
                                 Painel
                             </a>
 
-                            @if ($user->hasRole('admin', 'coordinator'))
+                            @if ($user->hasAnyRole(['admin', 'coordinator']))
                                 <a href="{{ route('subjects.index') }}"
                                     class="list-group-item list-group-item-action {{ request()->routeIs('subjects.*') ? 'active' : '' }}">
                                     Disciplinas
