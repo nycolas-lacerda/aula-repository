@@ -20,7 +20,7 @@
                     <div>
                         <span class="badge text-bg-light text-primary-emphasis fw-semibold mb-3">Sistema
                             pedagógico</span>
-                        <h1 class="display-6 fw-bold mb-3">{{ config('app.name', 'Aula') }}</h1>
+                        <h1 class="display-6 fw-bold mb-3"><a href="{{ route('login') }}">{{ config('app.name', 'Aula') }}</a></h1>
                         <p class="lead mb-0">
                             Gestão de aulas, atividades, revisões e perfis em uma interface clara, organizada e pronta
                             para apresentação.
