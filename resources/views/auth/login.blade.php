@@ -12,7 +12,8 @@
 
         <div class="col-12">
             <x-input-label for="email" value="E-mail" />
-            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus
+                autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -38,5 +39,13 @@
         <div class="col-12 d-grid">
             <x-primary-button>Entrar</x-primary-button>
         </div>
+        @if (Route::has('register'))
+            <div class="col-12 text-center">
+                <span class="text-muted">Não possui uma conta?</span>
+                <a href="{{ route('register') }}" class="link-primary text-decoration-none fw-semibold">
+                    Cadastre-se
+                </a>
+            </div>
+        @endif
     </form>
 </x-guest-layout>
