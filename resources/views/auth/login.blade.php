@@ -1,6 +1,5 @@
 <x-guest-layout>
     <div class="mb-4">
-        <p class="text-uppercase text-muted small fw-semibold mb-1">Acesso restrito</p>
         <h2 class="h3 mb-2">Entrar no sistema</h2>
         <p class="text-muted mb-0">Use seu e-mail e senha para acessar as funcionalidades do projeto.</p>
     </div>

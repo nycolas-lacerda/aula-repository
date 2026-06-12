@@ -1,6 +1,5 @@
 <x-guest-layout>
     <div class="mb-4">
-        <p class="text-uppercase text-muted small fw-semibold mb-1">Criar conta</p>
         <h2 class="h3 mb-2">Registrar novo usuário</h2>
         <p class="text-muted mb-0">Escolha o perfil adequado para liberar as permissões corretas dentro do sistema.</p>
     </div>
