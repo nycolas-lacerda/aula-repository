@@ -63,12 +63,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('subjects', SubjectController::class)->middleware(['role:admin']);
     Route::resource('grades', GradeController::class)->middleware(['role:admin']);
-    Route::resource('activities', ActivityController::class)->middleware(['role:admin|teacher']);
+    Route::resource('activities', ActivityController::class)->middleware(['role:admin|coordinator|teacher']);
     Route::get('activity-files/{activityFile}', [ActivityController::class, 'showFile'])
         ->name('activity-files.show')
         ->middleware(['auth']);
-    Route::post('lessons/{lesson}/submit', [LessonController::class, 'submit'])->name('lessons.submit')->middleware(['role:admin|teacher']);
-    Route::resource('lessons', LessonController::class)->middleware(['role:admin|teacher']);
+    Route::post('lessons/{lesson}/submit', [LessonController::class, 'submit'])->name('lessons.submit')->middleware(['role:admin|coordinator|teacher']);
+    Route::resource('lessons', LessonController::class)->middleware(['role:admin|coordinator|teacher']);
     Route::get('/lessons/{lesson}/preview/pdf', [LessonExportController::class, 'previewPdf'])->name('lessons.preview.pdf');
     Route::get('/lessons/{lesson}/export/pdf', [LessonExportController::class, 'pdf'])->name('lessons.export.pdf');
     Route::get('/lessons/{lesson}/export/docx', [LessonExportController::class, 'docx'])->name('lessons.export.docx');
