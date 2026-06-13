@@ -65,17 +65,17 @@
                             <div class="card h-100 shadow-sm border-0">
                                 <div class="card-header bg-white fw-semibold">
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#previewModal">
+                                        data-bs-target="#previewModal{{ $activity->id }}">
                                         Visualizar
                                     </button>
                                 </div>
-                                <div class="modal fade" id="previewModal{{ $file->id }}" tabindex="-1"
+                                <div class="modal fade" id="previewModal{{ $activity->id }}" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">
-                                                    {{ $file->file_name }}
+                                                    Pré-Visualização do Documento
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                 </button>
