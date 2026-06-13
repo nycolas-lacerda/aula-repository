@@ -70,10 +70,6 @@
                                             <div class="modal-body">
                                                 @if ($file->isImage())
                                                     <img src="{{ $file->publicUrl() }}" class="img-fluid">
-                                                @elseif ($file->isPdf())
-                                                    <iframe src="{{ $file->publicUrl() }}" class="w-100"
-                                                        style="height: 75vh;">
-                                                    </iframe>
                                                 @else
                                                     <div class="alert alert-info">
                                                         Pré-visualização indisponível.

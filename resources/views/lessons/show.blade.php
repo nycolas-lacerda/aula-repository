@@ -64,15 +64,29 @@
 
                             <div class="card h-100 shadow-sm border-0">
                                 <div class="card-header bg-white fw-semibold">
-                                    Pré-visualização do Documento
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                        data-bs-target="#previewModal">
+                                        Visualizar
+                                    </button>
                                 </div>
-
-                                <div class="card-body p-0">
-
-                                    <iframe src="{{ route('lessons.preview.pdf', $lesson) }}" class="w-100 border-0"
-                                        style="height: 900px;">
-                                    </iframe>
-
+                                <div class="modal fade" id="previewModal{{ $file->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    {{ $file->file_name }}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe src="{{ route('lessons.preview.pdf', $lesson) }}"
+                                                    class="w-100 border-0" style="height: 900px;">
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
