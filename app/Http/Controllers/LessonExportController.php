@@ -11,11 +11,6 @@ class LessonExportController extends Controller
 {
     public function previewPdf(Lesson $lesson)
     {
-        abort_unless(
-            $lesson->status === 'approved',
-            403
-        );
-
         $lesson->load([
             'teacher',
             'grade',
