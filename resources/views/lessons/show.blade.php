@@ -56,39 +56,41 @@
                         <div class="border-bottom pb-3 mb-4">
                             <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
                                 <div>
-                                    <div class="fw-semibold">{{ $activity->title }}</div>
-                                    <div class="text-muted small">Posição {{ $activity->pivot->position }}</div>
-                                </div>
-                                <span class="badge text-bg-secondary">{{ $activity->statusLabel() }}</span>
-                            </div>
-
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-header bg-white fw-semibold">
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#previewModal{{ $activity->id }}">
-                                        Visualizar
-                                    </button>
-                                </div>
-                                <div class="modal fade" id="previewModal{{ $activity->id }}" tabindex="-1"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    Pré-Visualização do Documento
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <iframe src="{{ route('lessons.preview.pdf', $lesson) }}"
-                                                    class="w-100 border-0" style="height: 900px;">
-                                                </iframe>
+                                    <span class="badge text-bg-secondary">{{ $activity->statusLabel() }}</span>
+                                    <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
+                                        <div>
+                                            <div class="fw-semibold">{{ $activity->title }}</div>
+                                            <div class="text-muted small">Posição {{ $activity->pivot->position }}</div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#previewModal{{ $activity->id }}">
+                                            Pré-Visualizar
+                                        </button>
+                                    </div>
+                                    <div class="card h-100 shadow-sm border-0">
+                                        <div class="modal fade" id="previewModal{{ $activity->id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">
+                                                            Pré-Visualização do Documento
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <iframe src="{{ route('lessons.preview.pdf', $lesson) }}"
+                                                            class="w-100 border-0" style="height: 900px;">
+                                                        </iframe>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     @empty
                         <p class="mb-0">Nenhuma atividade vinculada.</p>
